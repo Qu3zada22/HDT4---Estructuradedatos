@@ -1,3 +1,5 @@
+package org.Angginathan;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             // Leer expresión postfix desde el archivo datos.txt
-            String expresionPostfix = leerExpresionPostfixDesdeArchivo("datos.txt");
+            String expresionPostfix = leerExpresionPostfixDesdeArchivo("src\\main\\java\\org\\Angginathan\\datos.txt");
 
             // Evaluar la expresión postfix utilizando la clase CalculadoraPostfix
             int resultadoPostfix = CalculadoraPostfix.evaluar(expresionPostfix);
