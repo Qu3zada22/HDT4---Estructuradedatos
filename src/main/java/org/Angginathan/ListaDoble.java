@@ -52,19 +52,4 @@ public class ListaDoble<T> implements UVGLList<T> {
         return (head == null);
     }
 
-    public String toString() {
-        String txt = "null<-Head:";
-        Node<T> x = head;
-        while (x != null) {
-            txt += "[" + x.data + "]";
-            if (x == tail) {
-                txt += ":Tail->";
-            } else {
-                txt += "=>";
-            }
-            x = x.next;
-        }
-        txt += "null";
-        return txt;
-    }
 }

@@ -46,15 +46,4 @@ public class ListaSimple<T> implements UVGLList<T> {
             curr.next = newNode;
         }
     }
-
-    public String toString() {
-        String txt = "Head:";
-        Node<T> x = head;
-        while (x != null) {
-            txt += "[" + x.data + "]->";
-            x = x.next;
-        }
-        txt += "null";
-        return txt;
-    }
 }

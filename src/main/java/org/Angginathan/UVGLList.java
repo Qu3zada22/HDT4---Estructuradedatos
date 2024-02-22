@@ -15,6 +15,4 @@ public interface UVGLList<T> {
     public void addLast(T x);
 
     public boolean isEmpty();
-
-    public String toString();
 }

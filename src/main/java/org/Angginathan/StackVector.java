@@ -34,8 +34,4 @@ public class StackVector<T> implements UVGQueue<T> {
             return null;
         }
     }
-
-    public String toString() {
-        return data.toString();
-    }
 }

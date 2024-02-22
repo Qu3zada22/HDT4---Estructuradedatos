@@ -14,5 +14,4 @@ public interface UVGQueue<T> {
 
     public boolean isEmpty();
 
-    public String toString(); // Solo para probar
 }

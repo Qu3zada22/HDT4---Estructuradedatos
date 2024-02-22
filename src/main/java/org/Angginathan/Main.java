@@ -8,17 +8,17 @@ public class Main {
     public static void main(String[] args) {
         try {
             // Leer expresión postfix desde el archivo datos.txt
-            String expresionPostfix = leerExpresionPostfixDesdeArchivo("src\\main\\java\\org\\Angginathan\\datos.txt");
+            String expresionInfix = leerExpresionInfixDesdeArchivo("src\\main\\java\\org\\Angginathan\\datos.txt");
 
             // Evaluar la expresión postfix utilizando la clase CalculadoraPostfix
-            int resultadoPostfix = CalculadoraPostfix.evaluar(expresionPostfix);
+            int resultadoPostfix = CalculadoraPostfix.evaluar(expresionInfix);
             System.out.println("Resultado de la expresión postfix: " + resultadoPostfix);
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
     }
 
-    private static String leerExpresionPostfixDesdeArchivo(String nombreArchivo) throws IOException {
+    private static String leerExpresionInfixDesdeArchivo(String nombreArchivo) throws IOException {
         StringBuilder expresionPostfix = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
@@ -28,4 +28,5 @@ public class Main {
         }
         return expresionPostfix.toString();
     }
+
 }

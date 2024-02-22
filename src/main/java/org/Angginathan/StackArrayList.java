@@ -33,7 +33,4 @@ public class StackArrayList<T> implements UVGQueue<T> {
         return (data.size() == 0);
     }
 
-    public String toString() {
-        return data.toString();
-    }
 }
