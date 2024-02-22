@@ -39,11 +39,9 @@ public class ListaSimple<T> implements UVGLList<T> {
         if (head == null) {
             head = newNode;
         } else {
-            Node<T> curr = head;
-            while (curr.next != null) {
-                curr = curr.next;
-            }
-            curr.next = newNode;
+            newNode.next = head;
+            head = newNode;
         }
     }
+
 }

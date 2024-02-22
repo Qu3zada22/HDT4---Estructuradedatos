@@ -4,8 +4,6 @@ public class ListaDoble<T> implements UVGLList<T> {
     private class Node<T> {
         /*
          * Single Linked List Node
-         * No utiliza key, solo guarda data, porque no voy a hacer
-         * search.
          */
         public T data;
         public Node<T> next = null;
@@ -43,10 +41,11 @@ public class ListaDoble<T> implements UVGLList<T> {
             head = newNode;
             tail = newNode;
         } else {
-            tail.next = newNode;
-            tail = newNode;
+            newNode.next = head;
+            head = newNode;
         }
     }
+
 
     public boolean isEmpty() {
         return (head == null);

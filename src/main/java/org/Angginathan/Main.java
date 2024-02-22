@@ -1,3 +1,5 @@
+package org.Angginathan;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -39,10 +41,13 @@ public class Main {
             String expresionInfix = LectorArchivos.leerArchivo("src\\main\\java\\org\\Angginathan\\datos.txt");
 
             // Evaluar la expresión usando la calculadora singleton
-            CalculadoraSingleton calculadora = CalculadoraSingleton.getInstance();
-            int resultado = calculadora.evaluarExpresion(expresionInfix, stack);
+            String postfixExpression = ConversorInfixAPostfix.convertir(expresionInfix);
+            System.out.println("Infix: " + expresionInfix);
+            System.out.println("Postfix: " + postfixExpression);
 
-            System.out.println("Resultado de la expresión: " + resultado);
+            CalculadoraPostfix<Integer> calc = CalculadoraPostfix.getInstance();
+            Integer result = calc.Fixcalc(postfixExpression, stack);
+            System.out.println("Resultado: " + result);
 
             scanner.close();
         } catch (IOException e) {

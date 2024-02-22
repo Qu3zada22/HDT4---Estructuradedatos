@@ -1,44 +1,64 @@
 package org.Angginathan;
 
-public class CalculadoraPostfix {
-    public static <T> int evaluar(String postfixExpression, UVGQueue<Integer> stack) {
-        // Usaremos una estructura de datos que implemente UVGQueue para simular la pila
+import java.util.EmptyStackException;
 
-        String[] tokens = postfixExpression.split(" ");
+/**
+ * Clase para evaluar expresiones postfix utilizando una pila.
+ *
+ * @param <T> el tipo de elementos que contendrá la pila
+ */
+public class CalculadoraPostfix<T extends Number> {
+    private static CalculadoraPostfix instance = null;
 
-        for (String token : tokens) {
-            if (esOperador(token)) {
-                int operand2 = stack.dequeue();
-                int operand1 = stack.dequeue();
-                int result = realizarOperacion(operand1, operand2, token);
-                stack.enqueue(result);
-            } else {
-                stack.enqueue(Integer.parseInt(token));
-            }
+    /* Constructor */
+    public CalculadoraPostfix() {
+    }
+
+    /* Utilización de patrón de diseño Singleton */
+    public static CalculadoraPostfix getInstance() {
+        if (instance == null) {
+            instance = new CalculadoraPostfix();
         }
-
-        return stack.front(); // El resultado debe estar en el frente de la pila
+        return instance;
     }
 
-    private static boolean esOperador(String token) {
-        return token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/");
-    }
+    public T Fixcalc(String notation, UVGQueue<T> stack) {
+        char[] characters = notation.toCharArray();
 
-    private static int realizarOperacion(int operand1, int operand2, String operador) {
-        switch (operador) {
-            case "+":
-                return operand1 + operand2;
-            case "-":
-                return operand1 - operand2;
-            case "*":
-                return operand1 * operand2;
-            case "/":
-                if (operand2 == 0) {
-                    throw new ArithmeticException("División por cero");
+        try {
+            for (char x : characters) {
+                if (Character.isDigit(x)) {
+                    stack.enqueue((T) (Object) Integer.parseInt(String.valueOf(x)));
+                } else {
+                    T op2 = stack.dequeue();
+                    T op1 = stack.dequeue();
+
+                    switch (x) {
+                        case '+':
+                            stack.enqueue((T) (Object) (op1.intValue() + op2.intValue()));
+                            break;
+                        case '-':
+                            stack.enqueue((T) (Object) (op1.intValue() - op2.intValue()));
+                            break;
+                        case '*':
+                            stack.enqueue((T) (Object) (op1.intValue() * op2.intValue()));
+                            break;
+                        case '/':
+                            if (op2.intValue() == 0) {
+                                throw new ArithmeticException("División por cero");
+                            }
+                            stack.enqueue((T) (Object) (op1.intValue() / op2.intValue()));
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Operador no reconocido: " + x);
+                    }
                 }
-                return operand1 / operand2;
-            default:
-                throw new IllegalArgumentException("Operador no válido: " + operador);
+            }
+        } catch (EmptyStackException e) {
+            System.err.println("Error: Operadores insuficientes en la pila.");
+            return null;
         }
+
+        return stack.dequeue();
     }
 }

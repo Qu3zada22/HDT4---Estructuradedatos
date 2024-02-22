@@ -3,43 +3,44 @@ package org.Angginathan;
 import java.util.Stack;
 
 public class ConversorInfixAPostfix {
-    public static String convertir(String expresionInfix) {
+    public static String convertir(String infixExpression) {
         StringBuilder postfix = new StringBuilder();
-        Stack<Character> pila = new Stack<>();
-        pila.push('#'); // Paso 2
+        Stack<Character> stack = new Stack<>();
 
-        for (int i = 0; i < expresionInfix.length(); i++) {
-            char ch = expresionInfix.charAt(i);
+        infixExpression = infixExpression.replaceAll("\\s", "");
 
-            if (Character.isLetterOrDigit(ch)) { // Paso 4
-                postfix.append(ch); // Paso 5
-            } else if (ch == '(') { // Paso 6
-                pila.push(ch); // Paso 7
-            } else if (ch == '^') { // Paso 8
-                pila.push(ch); // Paso 9
-            } else if (ch == ')') { // Paso 10
-                while (pila.peek() != '(') { // Paso 11
-                    postfix.append(pila.pop()); // Paso 12
+        for (int i = 0; i < infixExpression.length(); i++) {
+            char ch = infixExpression.charAt(i);
+
+            if (Character.isLetterOrDigit(ch)) {
+                postfix.append(ch).append(" ");
+            } else if (ch == '(') {
+                stack.push(ch);
+            } else if (ch == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    postfix.append(stack.pop()).append(" ");
                 }
-                pila.pop(); // Paso 15
-            } else { // Paso 16
-                while (!pila.isEmpty() && precedencia(ch) <= precedencia(pila.peek())) { // Paso 17
-                    postfix.append(pila.pop()); // Paso 18
+                stack.pop(); // Pop '('
+            } else {
+                while (!stack.isEmpty() && precedence(ch) <= precedence(stack.peek())) {
+                    postfix.append(stack.pop()).append(" ");
                 }
-                pila.push(ch); // Paso 21
+                stack.push(ch);
             }
         }
 
-        while (pila.peek() != '#') { // Paso 24
-            postfix.append(pila.pop()); // Paso 25
+        while (!stack.isEmpty()) {
+            if (stack.peek() == '(') {
+                return "Expresión infix no válida";
+            }
+            postfix.append(stack.pop()).append(" ");
         }
 
-        pila.pop(); // Eliminar '#' adicional
-        return postfix.toString(); // Paso 27
+        return postfix.toString().trim(); // Eliminar el espacio en blanco adicional al final
     }
 
-    private static int precedencia(char operador) {
-        switch (operador) {
+    private static int precedence(char operator) {
+        switch (operator) {
             case '^':
                 return 3;
             case '*':
@@ -49,7 +50,7 @@ public class ConversorInfixAPostfix {
             case '-':
                 return 1;
             default:
-                return 0; // Se considera que cualquier otro carácter tiene la menor precedencia
+                return -1;
         }
     }
 }
