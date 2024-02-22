@@ -1,24 +1,23 @@
 package org.Angginathan;
 
-import java.util.Stack;
-
 public class CalculadoraPostfix {
-    public static int evaluar(String postfixExpression) {
-        Stack<Integer> stack = new Stack<>();
+    public static <T> int evaluar(String postfixExpression, UVGQueue<Integer> stack) {
+        // Usaremos una estructura de datos que implemente UVGQueue para simular la pila
+
         String[] tokens = postfixExpression.split(" ");
 
         for (String token : tokens) {
             if (esOperador(token)) {
-                int operand2 = stack.pop();
-                int operand1 = stack.pop();
+                int operand2 = stack.dequeue();
+                int operand1 = stack.dequeue();
                 int result = realizarOperacion(operand1, operand2, token);
-                stack.push(result);
+                stack.enqueue(result);
             } else {
-                stack.push(Integer.parseInt(token));
+                stack.enqueue(Integer.parseInt(token));
             }
         }
 
-        return stack.pop();
+        return stack.front(); // El resultado debe estar en el frente de la pila
     }
 
     private static boolean esOperador(String token) {
