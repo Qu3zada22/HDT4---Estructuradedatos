@@ -37,7 +37,7 @@ public class ListaDoble<T> implements UVGLList<T> {
         return head.data;
     }
 
-    public void addLast(T x) {
+    public void addFirst(T x) {
         Node<T> newNode = new Node<T>(x);
         if (head == null) {
             head = newNode;

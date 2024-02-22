@@ -3,7 +3,7 @@ package org.Angginathan;
 import java.util.Stack;
 
 public class ConversorInfixAPostfix {
-    public static String convertir(String expresionInfix, ) {
+    public static String convertir(String expresionInfix) {
         StringBuilder postfix = new StringBuilder();
         Stack<Character> pila = new Stack<>();
         pila.push('#'); // Paso 2

@@ -12,7 +12,7 @@ public interface UVGLList<T> {
 
     public T getFirst();
 
-    public void addLast(T x);
+    public void addFirst(T x);
 
     public boolean isEmpty();
 }

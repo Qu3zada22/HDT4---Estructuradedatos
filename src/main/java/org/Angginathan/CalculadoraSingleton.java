@@ -12,8 +12,8 @@ public class CalculadoraSingleton {
         return instancia;
     }
 
-    public int evaluarExpresion(String expresion, UVGQueue<T> estructura) {
+    public int evaluarExpresion(String expresion) {
         String postfixExpression = ConversorInfixAPostfix.convertir(expresion);
-        return CalculadoraPostfix.evaluar(postfixExpression, estructura);
+        return CalculadoraPostfix.evaluar(postfixExpression);
     }
 }

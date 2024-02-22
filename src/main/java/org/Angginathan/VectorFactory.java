@@ -1,6 +1,6 @@
 package org.Angginathan;
 
-public class EstructuraFactory<T> {
+public class VectorFactory<T> {
     public UVGQueue<T> crearEstructura(String tipo, String listaTipo) {
         switch (tipo) {
             case "stack":
