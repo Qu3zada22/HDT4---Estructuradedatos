@@ -51,4 +51,20 @@ public class FucionList<T> implements UVGQueue<T> {
     @Override
     public T dequeue() {
         if (isEmpty()) {
-            throw new Illeg
+            throw new IllegalStateException("Queue is empty");
+        }
+        T removed = lista.getFirst(); // Obtener el primer elemento
+        lista.removeFirst(); // Eliminar el primer elemento
+        return removed;
+    }
+
+    /**
+     * Verifica si la cola está vacía.
+     *
+     * @return true si la cola está vacía, false de lo contrario
+     */
+    @Override
+    public boolean isEmpty() {
+        return lista.isEmpty(); // Delegar la verificación de vacío a la lista enlazada
+    }
+}
