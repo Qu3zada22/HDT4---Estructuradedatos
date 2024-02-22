@@ -24,33 +24,34 @@ public class CalculadoraPostfix<T extends Number> {
 
     public T Fixcalc(String notation, UVGQueue<T> stack) {
         char[] characters = notation.toCharArray();
-
         try {
             for (char x : characters) {
                 if (Character.isDigit(x)) {
                     stack.enqueue((T) (Object) Integer.parseInt(String.valueOf(x)));
                 } else {
-                    T op2 = stack.dequeue();
-                    T op1 = stack.dequeue();
+                    if (x != ' ') {
+                        T op2 = stack.dequeue();
+                        T op1 = stack.dequeue();
 
-                    switch (x) {
-                        case '+':
-                            stack.enqueue((T) (Object) (op1.intValue() + op2.intValue()));
-                            break;
-                        case '-':
-                            stack.enqueue((T) (Object) (op1.intValue() - op2.intValue()));
-                            break;
-                        case '*':
-                            stack.enqueue((T) (Object) (op1.intValue() * op2.intValue()));
-                            break;
-                        case '/':
-                            if (op2.intValue() == 0) {
-                                throw new ArithmeticException("División por cero");
-                            }
-                            stack.enqueue((T) (Object) (op1.intValue() / op2.intValue()));
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Operador no reconocido: " + x);
+                        switch (x) {
+                            case '+':
+                                stack.enqueue((T) (Object) (op1.intValue() + op2.intValue()));
+                                break;
+                            case '-':
+                                stack.enqueue((T) (Object) (op1.intValue() - op2.intValue()));
+                                break;
+                            case '*':
+                                stack.enqueue((T) (Object) (op1.intValue() * op2.intValue()));
+                                break;
+                            case '/':
+                                if (op2.intValue() == 0) {
+                                    throw new ArithmeticException("División por cero");
+                                }
+                                stack.enqueue((T) (Object) (op1.intValue() / op2.intValue()));
+                                break;
+                            default:
+                                throw new IllegalArgumentException("Operador no reconocido: " + x);
+                        }
                     }
                 }
             }

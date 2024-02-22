@@ -21,12 +21,7 @@ public class StackArrayList<T> implements UVGQueue<T> {
     }
 
     public T dequeue() {
-        if (data.size() > 0) {
-            T val = data.get(0);
-            data.remove(0);
-            return val;
-        }
-        return null;
+        return data.remove(data.size() - 1);
     }
 
     public boolean isEmpty() {
