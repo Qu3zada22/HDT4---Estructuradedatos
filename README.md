@@ -32,4 +32,5 @@ Si deseas contribuir a este proyecto, ¡te damos la bienvenida! Siéntete libre 
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+![Uploading Imagen de WhatsApp 2024-02-21 a las 22.36.10_aca62ea9.jpg…]()
 
