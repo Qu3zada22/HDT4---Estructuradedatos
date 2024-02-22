@@ -15,6 +15,11 @@ public class CalculadoraPostfix<T extends Number> {
     }
 
     /* Utilización de patrón de diseño Singleton */
+    /**
+     * Obtiene una instancia de la calculadora postfix.
+     *
+     * @return la instancia única de la calculadora postfix
+     */
     public static CalculadoraPostfix getInstance() {
         if (instance == null) {
             instance = new CalculadoraPostfix();
@@ -22,6 +27,13 @@ public class CalculadoraPostfix<T extends Number> {
         return instance;
     }
 
+    /**
+     * Evalúa una expresión en notación postfix.
+     *
+     * @param notation la expresión en notación postfix
+     * @param stack    la pila utilizada para evaluar la expresión
+     * @return el resultado de la expresión
+     */
     public T Fixcalc(String notation, UVGQueue<T> stack) {
         char[] characters = notation.toCharArray();
         try {
